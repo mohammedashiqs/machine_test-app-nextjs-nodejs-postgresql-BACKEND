@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/add', authenticate, /* checkRole('admin'), */ addBook); // Protect this route with authentication middleware
 router.get('/', getBooks);
 router.get('/:id', getBookById);
-router.put('/update/:id', authenticate, updateBook);
+router.put('/edit/:id', authenticate, updateBook);
 router.delete('/delete/:id', authenticate, checkRole('admin'), deleteBook);
 
 export default router;
