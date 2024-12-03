@@ -9,6 +9,6 @@ router.post('/add', authenticate, /* checkRole('admin'), */ addBook); // Protect
 router.get('/', getBooks);
 router.get('/:id', getBookById);
 router.put('/edit/:id', authenticate, updateBook);
-router.delete('/delete/:id', authenticate, checkRole('admin'), deleteBook);
+router.delete('/delete/:id', authenticate, /* checkRole('admin'), */ deleteBook);
 
 export default router;

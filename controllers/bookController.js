@@ -65,13 +65,22 @@ export const updateBook = async (req, res) => {
 export const deleteBook = async (req, res) => {
   const { id } = req.params;
 
+  console.log(id)
+
   try {
+
+    // First, delete all reviews associated with this book
+    await prisma.review.deleteMany({
+      where: { bookId: Number(id) } // Assuming 'bookId' is the foreign key in Review table
+    });
+    
     const deletedBook = await prisma.book.delete({
       where: { id: parseInt(id) },
     });
 
     res.status(200).json({ message: "Book deleted successfully!" });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Something went wrong!" });
   }
 };
@@ -102,3 +111,6 @@ export const getBookById = async (req, res) => {
     res.status(500).json({ message: "Something went wrong!" });
   }
 };
+
+
+
